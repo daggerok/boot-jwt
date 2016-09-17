@@ -5,5 +5,6 @@ build
 
 ```fish
 gradle build
+gradle :authorization-server:bootRun
 gradle :resource-server:bootRun
 ```

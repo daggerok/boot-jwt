@@ -1,0 +1,8 @@
+project(':resource-server') {
+  dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+  }
+}

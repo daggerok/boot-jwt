@@ -1,0 +1,10 @@
+project(':authorization-server') {
+  dependencies {
+    compile('org.springframework.cloud:spring-cloud-starter-oauth2')
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+    compile("org.springframework.security:spring-security-jwt")
+    compile("org.webjars:webjars-locator")
+    compile("org.webjars:bootstrap:$webjarsBootstrapVersion")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+  }
+}

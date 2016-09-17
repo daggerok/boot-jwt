@@ -7,6 +7,9 @@ buildscript {
     localGradleVersion = '3.0'
     lombokVersion = '1.16.8'
     propdepsPluginVersion = '0.0.7'
+    springSecurityJwtVersion = '1.0.5.RELEASE'
+    webjarsLocatorVersion = '0.32'
+    webjarsBootstrapVersion = '3.3.7-1'
   }
   dependencies {
     repositories {
@@ -70,14 +73,5 @@ subprojects {
             'org.springframework.boot:spring-boot-starter-actuator'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
-  }
-}
-
-project(':resource-server') {
-  dependencies {
-    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
-    compile('org.springframework.boot:spring-boot-starter-data-rest')
-    compile('org.springframework.boot:spring-boot-starter-hateoas')
-    compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
   }
 }
