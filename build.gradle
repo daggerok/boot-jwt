@@ -19,7 +19,7 @@ buildscript {
   }
 }
 
-// gradle dependencyUpdates -Drevision=release -DoutputFormatter=json,plain -DoutputDir=build/
+// gradle dependencyUpdates -Drevision=release -DoutputFormatter=json,plain -DoutputDir=./build
 plugins {
   id 'com.github.ben-manes.versions' version '0.13.0'
 }
@@ -67,38 +67,11 @@ subprojects {
 
   dependencies {
     compile "org.projectlombok:lombok:$lombokVersion",
-            /*
-            'org.springframework.cloud:spring-cloud-starter-config',
-            'org.springframework.cloud:spring-cloud-starter-eureka',
-            'org.springframework.cloud:spring-cloud-starter-hystrix',
-            'org.springframework.cloud:spring-cloud-starter-bus-amqp',
-            'org.springframework.retry:spring-retry',
-             */
             'org.springframework.boot:spring-boot-starter-actuator'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
   }
 }
-
-/*
-project(':config-server') {
-  dependencies {
-    compile 'org.springframework.cloud:spring-cloud-config-server',
-            'org.springframework.cloud:spring-cloud-starter-eureka',
-            'org.springframework.cloud:spring-cloud-starter-hystrix',
-            'org.springframework.cloud:spring-cloud-starter-bus-amqp',
-  }
-}
-
-project(':discovery-server') {
-  dependencies {
-    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
-            'org.springframework.cloud:spring-cloud-starter-config',
-            'org.springframework.cloud:spring-cloud-starter-hystrix',
-            'org.springframework.cloud:spring-cloud-starter-bus-amqp',
-  }
-}
-*/
 
 project(':resource-server') {
   dependencies {
