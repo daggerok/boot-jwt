@@ -7,3 +7,9 @@ spring:
 server:
   port: 9999
   context-path: /uaa
+security:
+  user:
+    name: usr
+    password: pwd
+management:
+  context-path: /admin
