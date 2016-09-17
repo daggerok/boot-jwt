@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      port: 0
+    rest:
+      base-path: /api
+  application:
+    name: resource-server

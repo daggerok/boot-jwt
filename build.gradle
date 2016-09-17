@@ -1,0 +1,110 @@
+buildscript {
+  ext {
+    appVersion = '0.0.1'
+    appGroup = 'daggerok'
+    springBootVersion = '1.4.0.RELEASE'
+    springCloudVersion = 'Brixton.SR5'
+    localGradleVersion = '3.0'
+    lombokVersion = '1.16.8'
+    propdepsPluginVersion = '0.0.7'
+  }
+  dependencies {
+    repositories {
+      jcenter()
+      maven { url 'http://repo.spring.io/plugins-release' }
+    }
+
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion",
+              "org.springframework.build.gradle:propdeps-plugin:$propdepsPluginVersion"
+  }
+}
+
+// gradle dependencyUpdates -Drevision=release -DoutputFormatter=json,plain -DoutputDir=build/
+plugins {
+  id 'com.github.ben-manes.versions' version '0.13.0'
+}
+
+allprojects {
+  version = appVersion
+  group = appGroup
+
+  apply plugin: 'java'
+  apply plugin: 'idea'
+  apply plugin: 'propdeps'
+  apply plugin: 'propdeps-idea'
+  apply plugin: 'propdeps-maven'
+  apply plugin: 'propdeps-eclipse'
+
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
+
+  repositories {
+    jcenter()
+    maven { url 'https://repo.spring.io/snapshot' }
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/libs-milestone' }
+  }
+
+  task wrapper(type: Wrapper) { gradleVersion = localGradleVersion }
+}
+
+subprojects {
+  jar {
+    baseName = "$appGroup-$projectDir.name"
+  }
+
+  apply plugin: 'io.spring.dependency-management'
+
+  dependencyManagement {
+    imports {
+      mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+    }
+  }
+
+  apply plugin: 'spring-boot'
+
+  springBoot { executable = true }
+
+  dependencies {
+    compile "org.projectlombok:lombok:$lombokVersion",
+            /*
+            'org.springframework.cloud:spring-cloud-starter-config',
+            'org.springframework.cloud:spring-cloud-starter-eureka',
+            'org.springframework.cloud:spring-cloud-starter-hystrix',
+            'org.springframework.cloud:spring-cloud-starter-bus-amqp',
+            'org.springframework.retry:spring-retry',
+             */
+            'org.springframework.boot:spring-boot-starter-actuator'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+  }
+}
+
+/*
+project(':config-server') {
+  dependencies {
+    compile 'org.springframework.cloud:spring-cloud-config-server',
+            'org.springframework.cloud:spring-cloud-starter-eureka',
+            'org.springframework.cloud:spring-cloud-starter-hystrix',
+            'org.springframework.cloud:spring-cloud-starter-bus-amqp',
+  }
+}
+
+project(':discovery-server') {
+  dependencies {
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
+            'org.springframework.cloud:spring-cloud-starter-config',
+            'org.springframework.cloud:spring-cloud-starter-hystrix',
+            'org.springframework.cloud:spring-cloud-starter-bus-amqp',
+  }
+}
+*/
+
+project(':resource-server') {
+  dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+  }
+}
