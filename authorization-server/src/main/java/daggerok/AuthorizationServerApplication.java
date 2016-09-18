@@ -11,6 +11,8 @@ public class AuthorizationServerApplication {
 
     /**
 
+     gradle :authorization-server:bootRun
+
      curl mobile_app:@localhost:9999/uaa/oauth/token \
           -d grant_type=password \
           -d username=rest_reader_username \
