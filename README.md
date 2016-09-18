@@ -1,10 +1,11 @@
 boot-jwt [![build](https://travis-ci.org/daggerok/boot-jwt.svg?branch=master)](https://travis-ci.org/daggerok/boot-jwt)
 ====================
 
-build
+start auth and resource servers
 
 ```fish
-gradle build
 gradle :authorization-server:bootRun
 gradle :resource-server:bootRun
 ```
+
+and read how to test here: `./resource-server/src/main/java/daggerok/ResourceServerApplication.java`

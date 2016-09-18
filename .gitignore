@@ -1,8 +1,8 @@
 .DS_Store
-.iml
-.ipr
-.iws
-.idea
+*.iml
+*.ipr
+*.iws
+**/.idea
 .gradle
 gradle*
 build

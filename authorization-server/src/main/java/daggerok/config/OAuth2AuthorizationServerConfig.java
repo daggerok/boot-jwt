@@ -3,7 +3,6 @@ package daggerok.config;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -38,12 +37,12 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 .withClient("web_app")
                     .scopes("rest")
                     .autoApprove(true)
-                    .authorities("REST_READ", "REST_WRITE")
+                    .authorities("REST_READ_AUTH", "REST_WRITE_AUTH")
                     .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code")
          .and().withClient("mobile_app")
                     .scopes("rest")
                     .autoApprove(true)
-                    .authorities("REST_READ")
+                    .authorities("REST_READ_AUTH")
                     .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code")
         ;
         // @formatter:on
@@ -68,11 +67,14 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     protected JwtAccessTokenConverter jwtTokenEnhancer() {
 
         val jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        val keyStoreKeyFactory = new KeyStoreKeyFactory(
-                // -keystore .etc/boot-jwt.jks              // -storepass boot-jwt
-                new ClassPathResource(".etc/boot-jwt.jks"), "boot-jwt".toCharArray());
-                                                                         // keytool -genkeypair -alias bootjwt
-        jwtAccessTokenConverter.setKeyPair(keyStoreKeyFactory.getKeyPair("bootjwt"));
+        // -keystore etc/boot-jwt.jks
+        val jks = new ClassPathResource("etc/boot-jwt.jks");
+        // -storepass boot-jwt
+        val password = "boot-jwt".toCharArray();
+        val keyStoreKeyFactory = new KeyStoreKeyFactory(jks, password);
+        // keytool -genkeypair -alias bootjwt
+        val alias = "bootjwt";
+        jwtAccessTokenConverter.setKeyPair(keyStoreKeyFactory.getKeyPair(alias));
         return jwtAccessTokenConverter;
     }
 
@@ -109,11 +111,11 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
             auth.inMemoryAuthentication()
                     .withUser("rest_reader_username")
                         .password("rest_reader_password")
-                        .authorities("REST_READ")
+                        .authorities("REST_READ_AUTH")
                 .and()
                     .withUser("rest_writer_username")
                         .password("rest_writer_password")
-                        .authorities("REST_READ", "REST_WRITE");
+                        .authorities("REST_READ_AUTH", "REST_WRITE_AUTH");
             // @formatter:on
         }
     }
