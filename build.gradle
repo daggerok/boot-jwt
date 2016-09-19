@@ -10,7 +10,11 @@ buildscript {
     springSecurityJwtVersion = '1.0.5.RELEASE'
     webjarsLocatorVersion = '0.32'
     webjarsBootstrapVersion = '3.3.7-1'
+    webjarsJqueryVersion = '3.1.0'
+    webjarsReactVersion = '15.3.1'
+    webjarsBabelVersion = '5.8.38'
   }
+
   dependencies {
     repositories {
       jcenter()
@@ -52,26 +56,21 @@ allprojects {
 }
 
 subprojects {
-  jar {
-    baseName = "$appGroup-$projectDir.name"
-  }
+  jar { baseName = "$appGroup-$projectDir.name" }
 
   apply plugin: 'io.spring.dependency-management'
 
   dependencyManagement {
-    imports {
-      mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
-    }
+    imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion" }
   }
 
   apply plugin: 'spring-boot'
 
-  springBoot { executable = true }
+  springBoot { executable = false }
 
   dependencies {
     compile "org.projectlombok:lombok:$lombokVersion",
-            'org.springframework.boot:spring-boot-starter-actuator',
-            'org.springframework.cloud:spring-cloud-starter-oauth2'
+            'org.springframework.boot:spring-boot-starter-actuator'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
   }

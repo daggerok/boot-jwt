@@ -3,15 +3,15 @@ package daggerok;
 import daggerok.config.GlobalMethodSecurityConfig;
 import daggerok.config.ResourceServerConfig;
 import daggerok.config.RestRepositoryConfig;
-import daggerok.data.Item;
-import daggerok.data.ItemRestRepository;
-import org.springframework.boot.CommandLineRunner;
+import daggerok.config.ResourceServerCorsFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
-import java.util.stream.Stream;
+import javax.servlet.Filter;
 
 @SpringBootApplication
 @Import({   RestRepositoryConfig.class,
@@ -19,11 +19,17 @@ import java.util.stream.Stream;
             GlobalMethodSecurityConfig.class })
 public class ResourceServerApplication {
 
+    @Bean
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public Filter simpleCorsFilter() {
+        return new ResourceServerCorsFilter();
+    }
+
     /**
 
      1) check access denied without authorization:
 
-     http :8080/api/items
+     http :9000/api/items
      {"error": "unauthorized","error_description": "Full authentication is required to access this resource"}
 
      2) fetch token for read:
@@ -41,7 +47,7 @@ public class ResourceServerApplication {
      3) add it into header as expected and get protected resource:
 
      set TOKEN eyJhbGciOiJSUzI1NiIsInR5...
-     http :8080/api/items "Authorization: Bearer $TOKEN"
+     http :9000/api/items "Authorization: Bearer $TOKEN"
      {
          "_embedded": {
                  "items": []
@@ -50,7 +56,7 @@ public class ResourceServerApplication {
 
      4) try write data without permissions:
 
-     http post :8080/api/items content=newwwww "Authorization: Bearer $TOKEN"
+     http post :9000/api/items content=newwwww "Authorization: Bearer $TOKEN"
      {"error": "access_denied","error_description": "Access is denied"}
 
      5) fetch token for write:
@@ -65,14 +71,14 @@ public class ResourceServerApplication {
 
      set TOKEN eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJle
 
-     http post :8080/api/items content=newwwww "Authorization: Bearer $TOKEN"
+     http post :9000/api/items content=newwwww "Authorization: Bearer $TOKEN"
      {
          "_links": {
                  "item": {
-                 "href": "http://localhost:8080/api/items/57ddf1c0b0065b4da5599218"
+                 "href": "http://localhost:9000/api/items/57ddf1c0b0065b4da5599218"
              },
                  "self": {
-                 "href": "http://localhost:8080/api/items/57ddf1c0b0065b4da5599218"
+                 "href": "http://localhost:9000/api/items/57ddf1c0b0065b4da5599218"
              }
          },
          "content": "newwwww",

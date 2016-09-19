@@ -1,0 +1,77 @@
+{
+  "name": "boot-jwt",
+  "version": "0.0.1",
+  "description": "boot-jwt",
+  "main": "./src/main.js",
+  "scripts": {
+    "serve": "json-server ../java/resource/static/db.json -d 500 -w -p 3000 --static ../java/resource/static",
+    "prebuild": "npm run prewebpack && npm run clean",
+    "build": "NODE_ENV=production webpack --config ./config/webpack.config.production.babel.js -c --process -p",
+    "dev": "npm run webpack -- -w",
+    "start": "webpack-dev-server -d --config ./config/webpack.config.babel.js --content-base=../java/resource/static",
+    "webpack": "webpack --config ./config/webpack.config.babel.js -c --process",
+    "prewebpack": "npm i --no-optional",
+    "predev": "npm run prewebpack",
+    "clean": "rimraf -rf ../java/resource/static/**/*.{js,html}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://githuib.com/daggerok/boot-jwt"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Maksim Kostromin",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "*",
+    "autoprefixer-loader": "*",
+    "babel-cli": "*",
+    "babel-loader": "*",
+    "babel-plugin-add-module-exports": "*",
+    "babel-plugin-react-html-attrs": "*",
+    "babel-plugin-transform-class-properties": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-react": "*",
+    "babel-preset-stage-0": "*",
+    "babel-register": "*",
+    "css-loader": "*",
+    "extract-text-webpack-plugin": "*",
+    "file-loader": "*",
+    "handlebars": "*",
+    "handlebars-loader": "*",
+    "html-webpack-plugin": "*",
+    "json-server": "*",
+    "less": "*",
+    "less-loader": "*",
+    "opn-cli": "*",
+    "postcss-loader": "*",
+    "rimraf": "*",
+    "source-map-loader": "*",
+    "style-loader": "*",
+    "stylus": "*",
+    "stylus-loader": "*",
+    "url-loader": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*"
+  },
+  "dependencies": {
+    "reqwest": "*",
+    "jquery": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-router": "*"
+  },
+  "babel": {
+    "presets": [
+      "stage-0",
+      "es2015",
+      "react"
+    ],
+    "plugins": [
+      "react-html-attrs",
+      "add-module-exports",
+      "transform-class-properties"
+    ]
+  }
+}

@@ -1,6 +1,5 @@
 package daggerok.config;
 
-import ch.qos.logback.core.rolling.helper.TokenConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -27,6 +26,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
+                .cors().disable()
                 .authorizeRequests()
                     .antMatchers("/**").authenticated()
                     .antMatchers(HttpMethod.GET).hasAnyAuthority("REST_READ_ROLE")

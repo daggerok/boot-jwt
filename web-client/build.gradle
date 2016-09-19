@@ -1,0 +1,24 @@
+project(':web-client') {
+  dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-mustache',
+            'org.springframework.boot:spring-boot-devtools',
+            'org.webjars:webjars-locator',
+            "org.webjars:bootstrap:$webjarsBootstrapVersion",
+            "org.webjars:jquery:$webjarsJqueryVersion",
+            "org.webjars:react:$webjarsReactVersion",
+            "org.webjars.bower:babel:$webjarsBabelVersion"
+  }
+
+  task ui(type: Exec) {
+    workingDir "$projectDir/src/main/js"
+    commandLine "npm", "run", "build"
+  }
+
+  task dev(type: Exec) {
+    workingDir "$projectDir/src/main/js"
+    commandLine "npm", "run", "dev"
+  }
+
+  build.dependsOn ui
+  build.shouldRunAfter ui
+}

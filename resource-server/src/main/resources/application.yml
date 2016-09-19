@@ -6,3 +6,12 @@ spring:
       base-path: /api
   application:
     name: resource-server
+  mongodb:
+    embedded:
+      storage:
+        database-dir: db
+      features:
+server:
+  port: 9000
+management:
+  context-path: /admin

@@ -1,9 +1,6 @@
 spring:
   application:
     name: authorization-server
-  mustache:
-    cache: false
-    suffix: .hbs
 server:
   port: 9999
   context-path: /uaa

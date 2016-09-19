@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="web-app">
+  <meta name="keywords" content="spring,web-mvc,spring-boot,spring-mvc,spring-web,web-interceptor,spring-data-rest,mongodb,mustache,webjars-locator,bootstrap,java,gradle,html,css">
+  <meta name="author" content="Maksim Kostromin">
+  <title>web-app</title>
+  <link rel="stylesheet" href="{{springMacroRequestContext.request.contextPath}}/webjars/bootstrap/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="{{springMacroRequestContext.request.contextPath}}/assets/app.css">-->
+</head>
+<body class="container">
+<div id="app">
+  <h3>hey!</h3>
+</div>
+<script src="{{springMacroRequestContext.request.contextPath}}/webjars/jquery/jquery.min.js"></script>
+<script src="{{springMacroRequestContext.request.contextPath}}/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{springMacroRequestContext.request.contextPath}}/webjars/react/react.js"></script>
+<script src="{{springMacroRequestContext.request.contextPath}}/webjars/react/react-dom.min.js"></script>
+<!--<script src="{{springMacroRequestContext.request.contextPath}}/webjars/babel/browser.min.js"></script>-->
+<!--<script src="{{springMacroRequestContext.request.contextPath}}/assets/app.js"></script>-->
+<script type="text/babel">
+  /*
+    const ok = (data) => console.log('ok:', data);
+    const nok = (xhr) => console.log('err:', xhr.status, xhr);
+
+    const getData = (url) => {
+      $.get(url)
+          .then(ok)
+          .fail(nok)
+    };
+
+    const App = ({ name }) => (
+        <div>holla-la, {name}!</div>
+    );
+
+    ReactDOM.render(
+        <App name="daggerok"/>,
+        document.getElementById('app')
+    );
+
+    getData('http://localhost:9000/api/items');
+  //  getData();
+  */
+</script>
+</body>
+</html>

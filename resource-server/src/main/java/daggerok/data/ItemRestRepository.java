@@ -6,7 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
-import static daggerok.data.ItemRestRepository.*;
+import static daggerok.data.ItemRestRepository.CAN_READ;
 
 @RepositoryRestResource
 @PreAuthorize(CAN_READ)
