@@ -1,6 +1,5 @@
 package daggerok.config;
 
-import ch.qos.logback.core.rolling.helper.TokenConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

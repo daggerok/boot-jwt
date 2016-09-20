@@ -1,9 +1,9 @@
 spring:
   application:
     name: authorization-server
-  mustache:
-    cache: false
-    suffix: .hbs
+  data:
+    mongodb:
+      port: 0
 server:
   port: 9999
   context-path: /uaa
@@ -13,3 +13,5 @@ security:
     password: pwd
 management:
   context-path: /admin
+logging.level:
+  org.springframework.security: DEBUG

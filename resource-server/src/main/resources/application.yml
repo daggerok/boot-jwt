@@ -1,8 +1,12 @@
 spring:
-  data:
+  daggerok.data:
     mongodb:
       port: 0
     rest:
       base-path: /api
   application:
     name: resource-server
+server:
+  port: 9000
+logging.level:
+  org.springframework.security: DEBUG

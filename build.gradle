@@ -70,8 +70,7 @@ subprojects {
 
   dependencies {
     compile "org.projectlombok:lombok:$lombokVersion",
-            'org.springframework.boot:spring-boot-starter-actuator',
-            'org.springframework.cloud:spring-cloud-starter-oauth2'
+            'org.springframework.boot:spring-boot-starter-actuator'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
   }

@@ -1,0 +1,12 @@
+project(':data-user') {
+  dependencies {
+    compile 'org.springframework.security:spring-security-core',
+            'org.springframework.boot:spring-boot-starter-data-mongodb',
+            'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+
+  }
+
+  bootRepackage {
+    enabled = false
+  }
+}

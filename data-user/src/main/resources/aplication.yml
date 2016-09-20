@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: data-user
+  daggerok.data:
+    mongodb:
+      port: 0
+server:
+  port: 0

@@ -1,2 +1,5 @@
+include ':utils'
+include ':data-user'
+include ':data-client'
 include ':authorization-server'
 include ':resource-server'

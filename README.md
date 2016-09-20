@@ -1,5 +1,7 @@
-boot-jwt [![build](https://travis-ci.org/daggerok/boot-jwt.svg?branch=master)](https://travis-ci.org/daggerok/boot-jwt)
+boot-jwt [![build](https://travis-ci.org/daggerok/boot-jwt.svg?branch=spring-jwt-user-details-service)](https://travis-ci.org/daggerok/boot-jwt)
 ====================
+
+# EXAMPLE IS NOT WORKED YET
 
 start auth and resource servers
 

@@ -1,12 +1,16 @@
 package daggerok;
 
 import daggerok.config.OAuth2AuthorizationServerConfig;
+import daggerok.config.clientdetails.ClientInitializer;
+import daggerok.config.userdetails.UserInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import(OAuth2AuthorizationServerConfig.class)
+@Import({   UserInitializer.class,
+            ClientInitializer.class,
+            OAuth2AuthorizationServerConfig.class })
 public class AuthorizationServerApplication {
 
     /**
